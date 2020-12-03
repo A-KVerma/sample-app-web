@@ -33,7 +33,7 @@ const Controls = (props) => {
 const Room = ({ room, env, handleRoomLeave }) => {
   const { settings } = useContext(settingsContext)
   const [client, setClient] = useState(null)
-  const userName = 'armaf'
+  const userName = settings.userName
   const oldSettings = usePrevious(settings)
 
   useEffect(() => {

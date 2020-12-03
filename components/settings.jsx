@@ -21,6 +21,7 @@ const defaultSettings = {
     frameRate: 20,
     codec: 'vp8',
   },
+  userName:"armaf"
 }
 
 const settingsContext = createContext(null)
@@ -28,7 +29,8 @@ const settingsContext = createContext(null)
 const SettingsProvider = ({ children }) => {
   const { Provider } = settingsContext
   const savedSettings = storage.get('settings')
-  const [settings, setSettings] = useState(savedSettings || defaultSettings)
+  merge(savedSettings, defaultSettings)
+  const [settings, setSettings] = useState(savedSettings)
 
   return (
     <Provider

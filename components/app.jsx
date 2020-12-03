@@ -5,16 +5,22 @@ import Settings, { SettingsProvider } from 'components/settings'
 import { useRouter } from 'next/router'
 
 const App = (props) => {
-  const [state, setState] = useState('PRE_CALL')
+  const states = {
+    PRE_CALL:"PRE_CALL",
+    IN_CALL: "IN_CALL",
+    POST_CALL: "POST_CALL"
+  }
+  const [state, setState] = useState(states.PRE_CALL)
   const router = useRouter()
   const { room, env } = router.query
 
   const handleRoomJoin = () => {
-    setState('IN_CALL')
+    setState(states.IN_CALL)
   }
 
   const handleRoomLeave = () => {
-    setState('POST_CALL')
+    setState(states.POST_CALL)
+    // @INFO: Can show feedback etc after the call if needed
   }
 
   useEffect(() => {
@@ -23,7 +29,7 @@ const App = (props) => {
       
       getCameraPermissionState.then((result) => {
         if (result.state === 'granted') {
-          setState('IN_CALL')
+          setState(states.IN_CALL)
         }
       })
     }
@@ -32,8 +38,8 @@ const App = (props) => {
   return (
     <div>
       <SettingsProvider>
-        {state === 'PRE_CALL' && <Home onRoomJoin={handleRoomJoin} />}
-        {state === 'IN_CALL' && (
+        {state === states.PRE_CALL && <Home onRoomJoin={handleRoomJoin} />}
+        {state === states.IN_CALL && (
           <Room onRoomLeave={handleRoomLeave} room={room} env={env} />
         )}
         <div className="m-4 p-3 border rounded">
