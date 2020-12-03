@@ -1,6 +1,7 @@
 node_modules
 dist
 .vscode
+.next
 .env
 debug.log
 

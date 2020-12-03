@@ -4,6 +4,7 @@
   "description": "A web app built using 100mslive",
   "main": "src/index.jsx",
   "scripts": {
+    "dev": "next dev",
     "build": "webpack --mode production --env.production",
     "start": "webpack-dev-server --config ./webpack.config.js --mode development --open",
     "format": "prettier --write src"
@@ -34,22 +35,28 @@
     "webpack-dev-server": "3.11.0"
   },
   "dependencies": {
-    "@100mslive/hmsvideo-web": "^0.8.5-4",
+    "@100mslive/hmsvideo-web": "^0.8.5-5",
     "@material-ui/core": "^4.11.0",
     "antd": "^3.26.16",
+    "autoprefixer": "^10.0.4",
     "bowser": "^2.11.0",
     "copy-webpack-plugin": "^5.0.5",
     "dotenv": "^8.2.0",
     "firebase": "^8.0.0",
     "formik": "^2.1.7",
+    "lodash": "^4.17.20",
     "mdi-react": "^6.4.0",
-    "react": "^16.13.1",
+    "next": "^10.0.3",
+    "postcss": "^8.1.10",
+    "react": "^16.14.0",
     "react-container-dimensions": "^1.4.1",
-    "react-dom": "^16.13.1",
+    "react-dom": "^16.14.0",
+    "react-hook-form": "^6.12.2",
     "react-mdi": "^0.5.7",
     "react-router": "^5.0.1",
     "reactjs-localstorage": "1.0.1",
-    "rect-scaler": "^1.0.0"
+    "rect-scaler": "^1.0.0",
+    "tailwindcss": "^2.0.1"
   },
   "keywords": [
     "100mslive",
