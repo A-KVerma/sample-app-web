@@ -430,25 +430,25 @@ class LoginForm extends React.Component {
 
     console.log('endpoint', endpoint);
 
-    const respose = await fetch(endpoint, {
+    const response = await fetch(endpoint, {
       method: 'POST',
       body: JSON.stringify({
         room_name: values.roomName,
-        isRecording: values.isRecording,
+        recording_info: {
+          enabled: values.isRecording,
+        },
         env: values.env,
       }),
-    })
-      .then()
-      .catch(err => {
-        console.log(err);
-      });
+    }).catch(err => {
+      console.log('Error', err);
+    });
 
-    console.log('Respose: ', respose);
-    if (respose.status != 200) {
-      this._notification('Room already exists', 'Try a new room name', 'error');
+    console.log('Response: ', response);
+    if (response.status != 200) {
+      this._notification('Error', response.message, 'error');
     } else {
-      const roomEntry = await respose.json();
-      console.log('roomEntry:', roomEntry);
+      const roomEntry = await response.json();
+      console.log('response:', roomEntry);
       values.roomId = roomEntry.id;
       this._notification(
         'Room Created',
@@ -689,7 +689,7 @@ class LoginForm extends React.Component {
                           this.setState({ formStage: 'CREATE_ROOM' })
                         }
                       >
-                        Create Meeting
+                        Create Room
                       </button>
                       <button
                         className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-indigo-600 bg-white hover:text-indigo-700 hover:border-indigo-700 focus:outline-none border-indigo-600 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out"
@@ -697,7 +697,7 @@ class LoginForm extends React.Component {
                           this.setState({ formStage: 'JOIN_ROOM' })
                         }
                       >
-                        Join Meeting
+                        Join Room
                       </button>
                     </div>
                   </div>
